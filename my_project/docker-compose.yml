@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: ./web
+    ports:
+      - "8888:8080"
+    depends_on:
+      - database
+      - cache 
+  database:
+    build: ./database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+  cache:
+    build: ./cache
+    ports:
+      - "6379:6379"
